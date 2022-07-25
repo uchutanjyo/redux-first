@@ -15,6 +15,15 @@ import { orange, green } from "@material-ui/core/colors";
 import 'typeface-roboto-material'
 
 import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container"
+
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
 
 const useStyles = makeStyles({
 root: {
@@ -26,6 +35,12 @@ root: {
 });
 
 const theme = createTheme({
+  typography: {
+    h2: {
+      fontSize: 50,
+      marginTop: '2em'
+    }
+  },
   palette:  {
     primary: {
       main: orange[500]
@@ -45,9 +60,19 @@ const MUITest = () => {
 
   return (
     <>
-    <Typography variant='h1'> Hey It's my website from 2005</Typography>
+        <ThemeProvider theme={theme}>
+        <Container xs={3} lg={16} justify="center" maxWidth="sm">
+          <AppBar>
+            <Toolbar>
+              <IconButton>
+                <MenuIcon></MenuIcon>
+                <Typography variant='h3'>sadf</Typography>
+              </IconButton>
+            </Toolbar>
+          </AppBar>
 
-    <ThemeProvider theme={theme}>
+    <Typography variant='h2'> Hey It's my website from 2005</Typography>
+    {/* body1, subtitle1 */}
      <div>OKAY, DESU</div>
      <ButtonGroup>
       <ButtonStyled />
@@ -61,8 +86,20 @@ Click Me Too
 
 <TextField variant='outlined' color="secondary" label="yo" placeholder="ysdfsdfsdf" />
 
-<FormControlLabel control={<Checkbox inputProps={{'aria-label': 'secondary-checkbox'}} icon={<DeleteIcon/>} checkedIcon={<SaveIcon />}/>} />
+<Grid container spacing={2}>
+<Grid item>
+  <Paper style={{height: 75, width: 50 }}>sd</Paper>
+</Grid>
+<Grid item>
+  <Paper style={{height: 75, width: 50 }}>sd</Paper>
+</Grid>
+<Grid item>
+  <Paper style={{height: 75, width: 50 }}>sd</Paper>
+</Grid>
+</Grid>
 
+<FormControlLabel control={<Checkbox inputProps={{'aria-label': 'secondary-checkbox'}} icon={<DeleteIcon/>} checkedIcon={<SaveIcon />}/>} />
+</Container>
 </ThemeProvider>
     </>
   );
