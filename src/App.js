@@ -1,8 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Navbar from "./components/Navbar";
-import { Button } from '@material-ui/core';
+
+import MUITest from "./components/MuiTest";
+
+import  Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+
 
 const App = () => {
 
@@ -10,12 +17,8 @@ const App = () => {
     <>
     <Navbar></Navbar>
      <div>OKAY, DESU</div>
-     <Button startIcon={<SaveIcon/>
-    } onClick={() => console.log('hello')} href="#" size="large" color="primary" variant="contained">
+     <MUITest></MUITest>
 
-Click Me
-
-</Button>
     </>
   );
 };
