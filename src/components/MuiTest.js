@@ -62,14 +62,14 @@ const MUITest = () => {
     <>
         <ThemeProvider theme={theme}>
         <Container xs={3} lg={16} justify="center" maxWidth="sm">
-          <AppBar>
+          {/* <AppBar>
             <Toolbar>
               <IconButton>
                 <MenuIcon></MenuIcon>
                 <Typography variant='h3'>sadf</Typography>
               </IconButton>
             </Toolbar>
-          </AppBar>
+          </AppBar> */}
 
     <Typography variant='h2'> Hey It's my website from 2005</Typography>
     {/* body1, subtitle1 */}

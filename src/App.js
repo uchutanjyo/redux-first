@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import Navbar from "./components/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { calculateTotals } from "./features/cart/cartSlice";
 
 import MUITest from "./components/MuiTest";
 
@@ -13,6 +15,12 @@ import CartContainer from "./components/CartContainer";
 
 const App = () => {
 
+  const cartItems = useSelector((store) => store.cart)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(calculateTotals())
+  }, [cartItems])
   return (
     <>
     <Navbar>
