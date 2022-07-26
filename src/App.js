@@ -9,15 +9,16 @@ import SaveIcon from '@material-ui/icons/Save'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-
+import CartContainer from "./components/CartContainer";
 
 const App = () => {
 
   return (
     <>
-    <Navbar></Navbar>
-     <div>OKAY, DESU</div>
-     <MUITest></MUITest>
+    <Navbar>
+</Navbar>
+<MUITest></MUITest>
+<CartContainer/>
 
     </>
   );
