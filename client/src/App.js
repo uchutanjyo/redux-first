@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import Navbar from "./components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { calculateTotals, getCartItems } from "./features/cart/cartSlice";
-
+import { calculateTotals, getCartItems, getGraphData } from "./features/cart/cartSlice";
+import axios from 'axios';
 
 import MUITest from "./components/MuiTest";
 
@@ -26,6 +26,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getCartItems())
+    dispatch(getGraphData())
+
   }, [])
 
   useEffect(() => {
