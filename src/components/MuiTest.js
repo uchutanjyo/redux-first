@@ -84,8 +84,8 @@ Click Me Too
 </Button>
 </ButtonGroup>
 
-<TextField variant='outlined' color="secondary" label="yo" placeholder="ysdfsdfsdf" />
-
+{/* <TextField variant='outlined' color="secondary" label="yo" placeholder="ysdfsdfsdf" /> */}
+{/* 
 <Grid container spacing={2}>
 <Grid item>
   <Paper style={{height: 75, width: 50 }}>sd</Paper>
@@ -96,7 +96,7 @@ Click Me Too
 <Grid item>
   <Paper style={{height: 75, width: 50 }}>sd</Paper>
 </Grid>
-</Grid>
+</Grid> */}
 
 <FormControlLabel control={<Checkbox inputProps={{'aria-label': 'secondary-checkbox'}} icon={<DeleteIcon/>} checkedIcon={<SaveIcon />}/>} />
 </Container>

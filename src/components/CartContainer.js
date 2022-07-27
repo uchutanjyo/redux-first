@@ -3,11 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete'
 import Box from "@material-ui/core/Box"
 import { clearCart } from '../features/cart/cartSlice'
+import { Button } from "@mui/material";
+import { openModal } from "../features/modal/modalSlice";
 
 const CartContainer = () => {
     
 
-    const { cartItems, amount, total} = useSelector(store => store.cart)
+    const { cartItems, amount, total } = useSelector(store => store.cart)
+        const { isOpen } = useSelector(store => store.modal)
+
 
     const dispatch = useDispatch()
 
@@ -24,7 +28,10 @@ const CartContainer = () => {
     <div>{cartItems.map((item) => {
       return  <CartItem key={item.id} {...item}/>  
     })}</div>
-    <div><DeleteIcon onClick={() => {dispatch(clearCart())}}></DeleteIcon>Delete cart</div>
+    <Box>Total price: ${total.toFixed()}.00</Box>
+    <Button onClick={() => {
+
+      dispatch(openModal())}}><DeleteIcon ></DeleteIcon>Delete cart</Button>
     </Box>
       </>
     );
