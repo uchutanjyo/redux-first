@@ -1,22 +1,19 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
-import Navbar from "./components/Navbar";
+
 import { useDispatch, useSelector } from "react-redux";
 import { calculateTotals, getCartItems, getGraphData } from "./features/cart/cartSlice";
-import axios from 'axios';
 
-import MUITest from "./components/MuiTest";
-
-import  Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Checkbox from '@material-ui/core/Checkbox'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import CartContainer from "./components/CartContainer";
-import DeleteModal from "./components/Modal";
-import { openModal, closeModal } from "./features/modal/modalSlice";
-
-
+// react router
+import {  BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// pages
+import Home from "./Home";
+import About from "./About";
+import Cart from "./Cart";
+import Products from "./Products";
+import ProductDetailsPage from "./ProductDetailsPage";
+import Registration from "./Registration";
+import Login from "./components/Login"
+import Navbar from "./components/Navbar";
 
 
 const App = () => {
@@ -26,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getCartItems())
-    dispatch(getGraphData())
+    // dispatch(getGraphData())
 
   }, [])
 
@@ -34,23 +31,32 @@ const App = () => {
     dispatch(calculateTotals())
   }, [cartItems])
 
-
-  if (isLoading) {
-    return (
-      <div><h1>isLoading...</h1></div>
-    )
-  }
   return (
     <>
-<DeleteModal  />
-    <Navbar>
-</Navbar>
+      <Router>
+      <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="about/" element={<About />}></Route>
+          <Route path="cart/" element={<Cart />}></Route>
+          <Route path="products/" element={<Products />}></Route>
+          <Route path="registration/" element={<Registration />}></Route>
+          <Route path="login/" element={<Login />}></Route>
 
-<MUITest></MUITest>
-<CartContainer/>
-
+          <Route
+            path="productdetailspage/"
+            element={<ProductDetailsPage />}
+          ></Route>
+          <Route
+            path=":productId/productdetailspage"
+            element={<ProductDetailsPage />}>
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 };
 
 export default App;
+
+

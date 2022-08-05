@@ -28,12 +28,19 @@ export const getGraphData = createAsyncThunk('cart/getGraphData', async (action)
         try {
             const response = await axios.post(GRAPHQL_URL, 
                  { query: `
-            query {
-              greeting
+                 Query {
+            getCartItem {
+              id
+              title
+              img
+              amount
             }
-          `})
+        }
+          `}, 
+          )
           console.log(response)
-        return response } catch (error) {
+        return response }
+         catch (error) {
             console.log("it is failure",error)
            
         }

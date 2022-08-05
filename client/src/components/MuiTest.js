@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
 import  Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -62,6 +62,10 @@ const MUITest = () => {
     <>
         <ThemeProvider theme={theme}>
         <Container xs={3} lg={16} justify="center" maxWidth="sm">
+
+        </Container>
+      </ThemeProvider>  
+
           {/* <AppBar>
             <Toolbar>
               <IconButton>
@@ -71,8 +75,8 @@ const MUITest = () => {
             </Toolbar>
           </AppBar> */}
 
-    <Typography variant='h2'> Hey It's my website from 2005</Typography>
-    {/* body1, subtitle1 */}
+    {/* <Typography variant='h2'> Hey It's my website from 2005</Typography>
+
      <div>OKAY, DESU</div>
      <ButtonGroup>
       <ButtonStyled />
@@ -82,7 +86,7 @@ Click Me
 <Button startIcon={<SaveIcon/>} onClick={() => console.log('hello')} href="#" size="large" color="secondary" variant="contained">
 Click Me Too
 </Button>
-</ButtonGroup>
+</ButtonGroup> */}
 
 {/* <TextField variant='outlined' color="secondary" label="yo" placeholder="ysdfsdfsdf" /> */}
 {/* 
@@ -98,9 +102,8 @@ Click Me Too
 </Grid>
 </Grid> */}
 
-<FormControlLabel control={<Checkbox inputProps={{'aria-label': 'secondary-checkbox'}} icon={<DeleteIcon/>} checkedIcon={<SaveIcon />}/>} />
-</Container>
-</ThemeProvider>
+{/* <FormControlLabel control={<Checkbox inputProps={{'aria-label': 'secondary-checkbox'}} icon={<DeleteIcon/>} checkedIcon={<SaveIcon />}/>} /> */}
+
     </>
   );
 };
