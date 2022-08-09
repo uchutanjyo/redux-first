@@ -14,7 +14,6 @@ const Navbar = () => {
     const { amount } = useSelector(store => store.cart )
     const { cartItems, isLoading } = useSelector((store) => store.cart)
 
-    console.log(amount)
     return (
         <>
           <AppBar display='flex'>

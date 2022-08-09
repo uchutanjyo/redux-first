@@ -20,6 +20,7 @@ const initialState = {
     })
     .catch((err) => {
         console.log(err)
+              // by explicitly returning it using the `rejectWithValue()` utility
     })
 })
 
@@ -38,7 +39,6 @@ export const getGraphData = createAsyncThunk('cart/getGraphData', async (action)
         }
           `}, 
           )
-          console.log(response)
         return response }
          catch (error) {
             console.log("it is failure",error)
@@ -60,7 +60,6 @@ const cartSlice = createSlice({
             state.cartItems = state.cartItems.filter((item) => {
                 return item.id !== itemId
             })
-                console.log(state.cartItems)
         },
         increase: (state, {payload} ) => {
             const cartItem = state.cartItems.find((item) => item.id === payload)
@@ -89,7 +88,6 @@ const cartSlice = createSlice({
             },
             [getCartItems.fulfilled]: (state, action) => {
                 // action contains result if succesful.
-                console.log(action, 'act')
                 state.isLoading = false;
                 state.cartItems = action.payload
             },
@@ -100,7 +98,6 @@ const cartSlice = createSlice({
         }
 }) 
 
-console.log(cartSlice)
 
 export const { clearCart, removeItem, increase, decrease, calculateTotals } = cartSlice.actions;
 
