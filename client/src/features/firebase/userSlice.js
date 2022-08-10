@@ -9,6 +9,7 @@ const initialState = {
 }
 
 
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -25,5 +26,7 @@ const userSlice = createSlice({
 
 
 export const { setActiveUser } = userSlice.actions;
+
+export const userInitialState = initialState
 
 export default userSlice.reducer
