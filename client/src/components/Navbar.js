@@ -8,12 +8,14 @@ import  Button from '@material-ui/core/Button';
 import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from 'react-router-dom'
 
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateTotals, getCartItems } from "../features/cart/cartSlice";
 import { setActiveUser } from "../features/firebase/userSlice";
-import { auth, signInWithGoogle } from "../config/utils";
+import { auth, signInWithGoogle, handleUserProfile } from "../config/utils";
 import { signOut } from "firebase/auth";
 import { userInitialState } from "../features/firebase/userSlice";
+import { useRef } from "react";
 
 
 
@@ -23,15 +25,38 @@ const Navbar = (props) => {
 
 
     const { cartItems, isLoading, amount } = useSelector((store) => store.cart)
-     const { userName, initialState } = useSelector((store) => store.user)
+     const { userName, initialState, usersLoading } = useSelector((store) => store.user)
 
   const dispatch = useDispatch()
+  const user = auth.currentUser
+
+  const doIt = async () => {
+    const user = auth.currentUser
+
+      const userRef = await handleUserProfile(user)
+      console.log(userRef, 'start')
+      console.log('donelikdineerr')
+      // dispatch(setActiveUser({
+      // }))
+      
+      console.log('donelikdineerr')
+
+    // dispatch(setActiveUser(userInitialState.userName))
+  }
+
+  useEffect( () => {
+    doIt()
+      console.log(userName)
+
+
+
+  }, [userName])
 
 const handleLogin = () => {
   signInWithGoogle()
   .then((result) => {
     const user = auth.currentUser
-    if (!user) dispatch(setActiveUser(...initialState))
+    if (!user) dispatch(setActiveUser(userInitialState.userName))
      dispatch(setActiveUser(user.displayName))
      return
   }) }

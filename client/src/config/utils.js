@@ -1,7 +1,8 @@
+
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore } from "firebase/firestore/lite";
+import { getFirestore, collection, addDoc, doc, setDoc, getDoc } from "firebase/firestore";
 
 import { firebaseConfig } from "./firebase";
 
@@ -33,6 +34,61 @@ const signInWithGoogle = () => signInWithPopup(auth, provider)
   // ...
 });
 
-export { db, auth, storage, provider, signInWithGoogle };
+
+ const handleUserProfile = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+  
+  const { uid, displayName, email } = userAuth;
+  const userRef = collection(db, 'users')
+  
+//   const docSnap = await getDoc(userRef, uid);
+// console.log('sdf', docSnap)
+
+  try {await addDoc(userRef, { uid: uid, dn: displayName, em: email })
+  console.log('sdsdfsdff', userRef)
+ }
+  catch(error) {
+  console.log(error);
+};
+
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // doc.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+
+    console.log('didit')
+}
+
+  // console.log('sssss', userAuth, userRef)
+  // const userRef = db.doc(`users/${uid}`)
+  // console.log('sssss', userAuth, userRef)
+
+  // const snapshot = await userRef.get();
+  // console.log(userAuth, snapshot, 'ui')
+
+  // if(!snapshot.exists) {
+  //   const { displayName, email } = userAuth
+  //   const timestamp = new Date()
+  //   console.log(userAuth, 'ui')
+  //   try {
+  //     await userRef.set({
+  //     displayName,
+  //     email,
+  //     createdDate: timestamp,
+  //     ...additionalData
+  //     })
+  //   }
+  //   catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+  // return userRef;
+
+
+
+
+export { db, auth, storage, provider, handleUserProfile, signInWithGoogle };
 
  
