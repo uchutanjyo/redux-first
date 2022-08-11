@@ -4,7 +4,7 @@ import { auth } from '../../config/utils'
 
 
 const initialState = {
-    userName: null,
+    currentUser: null,
     usersLoading: false
 }
 
@@ -15,9 +15,12 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setActiveUser: (state, action) => {
-            state.userName = action.payload
-            
+            state.currentUser = action.payload
             console.log(current(state))
+        },
+
+        setIsUserLoading: (state, action) => {
+            state.usersLoading = !state.usersLoading
         }
     }
 
@@ -25,8 +28,8 @@ const userSlice = createSlice({
 }) 
 
 
-export const { setActiveUser } = userSlice.actions;
+export const { setActiveUser, setIsUserLoading } = userSlice.actions;
 
-export const userInitialState = initialState
+export const userInitialState = initialState.currentUser
 
 export default userSlice.reducer

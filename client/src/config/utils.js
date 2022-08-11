@@ -43,7 +43,7 @@ const signInWithGoogle = () => signInWithPopup(auth, provider)
 
   const userRef = doc(db, 'users', uid)
 
-  
+  console.log(userRef)
   // const docSnap = await getDoc(doc(db, 'users', uid))
   // console.log(docSnap)
     try {

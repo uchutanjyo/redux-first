@@ -11,10 +11,9 @@ import { Link as RouterLink } from 'react-router-dom'
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateTotals, getCartItems } from "../features/cart/cartSlice";
-import { setActiveUser } from "../features/firebase/userSlice";
+import { setActiveUser, userInitialState, setIsUserLoading } from "../features/firebase/userSlice";
 import { auth, signInWithGoogle, handleUserProfile } from "../config/utils";
 import { signOut } from "firebase/auth";
-import { userInitialState } from "../features/firebase/userSlice";
 import { useRef } from "react";
 
 
@@ -25,43 +24,40 @@ const Navbar = (props) => {
 
 
     const { cartItems, isLoading, amount } = useSelector((store) => store.cart)
-     const { userName, initialState, usersLoading } = useSelector((store) => store.user)
+     const { currentUser, initialState, usersLoading } = useSelector((store) => store.user)
 
   const dispatch = useDispatch()
   const user = auth.currentUser
 
-  const doIt = async () => {
-    const user = auth.currentUser
-
+  const updateUserInDatabase = async () => {
+      const user = auth.currentUser
       const userRef = await handleUserProfile(user)
       console.log(userRef, 'start')
-      console.log('donelikdineerr')
-      // dispatch(setActiveUser({
-      // }))
-      
-      console.log('donelikdineerr')
+      // dispatch(setActiveUser({ }))
 
-    // dispatch(setActiveUser(userInitialState.userName))
   }
 
   useEffect( () => {
-    doIt()
-      console.log(userName)
-
-  }, [userName])
+    if (currentUser !== null) {
+      
+    updateUserInDatabase()
+      setIsUserLoading()
+    }
+  }, [currentUser])
 
 const handleLogin = () => {
   signInWithGoogle()
   .then((result) => {
     const user = auth.currentUser
-    if (!user) dispatch(setActiveUser(userInitialState.userName))
-     dispatch(setActiveUser(user.displayName))
+    console.log(usersLoading)
+    if (!user) dispatch(setActiveUser(userInitialState))
+     dispatch(setActiveUser(user))
      return
   }) }
 
   const handleLogout = () => {
   signOut(auth)
-  dispatch(setActiveUser(userInitialState.userName))
+  dispatch(setActiveUser(userInitialState))
 
    console.log('signedout')
  }
@@ -95,8 +91,8 @@ const handleLogin = () => {
       
          <Typography variant='h3'>The Store.</Typography></Box>
 
-         {!userName &&  <Button onClick={handleLogin}>Login here</Button>}
-         {userName &&  <Button onClick={handleLogout}>Logout.</Button> }
+         {!currentUser &&  <Button onClick={handleLogin}>Login here</Button>}
+         {currentUser &&  <Button onClick={handleLogout}>Logout.</Button> }
                 <Box marginLeft="auto">Items in cart: {amount}</Box>
 
             </Toolbar>
