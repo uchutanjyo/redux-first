@@ -39,27 +39,24 @@ const signInWithGoogle = () => signInWithPopup(auth, provider)
   if (!userAuth) return;
   
   const { uid, displayName, email } = userAuth;
-  const userRef = collection(db, 'users')
+  // const usersRef = collection(db, 'users')
+
+  const userRef = doc(db, 'users', uid)
+
   
-//   const docSnap = await getDoc(userRef, uid);
-// console.log('sdf', docSnap)
-
-  try {await addDoc(userRef, { uid: uid, dn: displayName, em: email })
-  console.log('sdsdfsdff', userRef)
+  // const docSnap = await getDoc(doc(db, 'users', uid))
+  // console.log(docSnap)
+    try {
+      await setDoc(userRef, { displayName, email }, { merge: true })
+    console.log('sdsdfsdff', userRef)
+   }
+    catch(error) {
+    console.log(error);
+  };
+  
+  console.log('didit')
+  return userRef
  }
-  catch(error) {
-  console.log(error);
-};
-
-  // if (docSnap.exists()) {
-  //   console.log("Document data:", docSnap.data());
-  // } else {
-  //   // doc.data() will be undefined in this case
-  //   console.log("No such document!");
-  // }
-
-    console.log('didit')
-}
 
   // console.log('sssss', userAuth, userRef)
   // const userRef = db.doc(`users/${uid}`)

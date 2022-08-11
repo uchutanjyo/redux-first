@@ -48,8 +48,6 @@ const Navbar = (props) => {
     doIt()
       console.log(userName)
 
-
-
   }, [userName])
 
 const handleLogin = () => {
